@@ -32,7 +32,7 @@ st.set_page_config(
 
 
 page_title="Мировое господство",
-page_icon="🛡️",
+page_icon="🚙",
 layout="wide",
 initial_sidebar_state="collapsed", #expanded/collapsed
 menu_items={
@@ -69,22 +69,25 @@ if menu=='Авторы':
 
 if menu=='Гуманитарная помощь':
     st.write('Деньги:',money)
-    visit_money = st.selectbox('Кому вы хотите перевести деньги?',('Мексика', 'Канада', 'Австралия', 'Швеция', 'Аргентина'))
+    visit_money = st.selectbox('Кому вы хотите перевести деньги?',('Мексике', 'Канаде', 'Австралия', 'Швеции', 'Аргентине'))
     how_money = st.number_input('Сумма перевода?', 200)
     for ii in range(0, 20):
         if request_money.get(f'{ii}') == None:
             break
     if st.button('Перевести'):
+        for ii in range(0, 20):
+            if request_money.get(f'{ii}') == None:
+                break
         request_money.put({'key':f'{ii}','who':f'{Country_Name}','come':visit_money,'price':how_money})
         st.success('Запрос на перевод отправлен.(Деньги придут в течение 5 минут)')
 
 
 if menu=='Посещения':
-    for ii in range(0, 20):
-        if request.get(f'{ii}') == None:
-            break
     visit = st.selectbox('Какую старану вы хотите посетить?', ('Мексика', 'Канада', 'Австралия', 'Швеция', 'Аргентина'))
     if st.button('Отправить запрос'):
+        for ii in range(0, 20):
+            if request.get(f'{ii}') == None:
+                break
         request.put({'key':f'{ii}','who':f'{Country_Name}','come':visit})
         st.success('Запрос на посещение отправлен')
 
@@ -92,16 +95,16 @@ if menu=='Посещения':
 if menu=='Запуск ракет':
     final_roket = -1999
     if city['reserch']=='0':
-        st.error('Дружек ты еще не изучил ракеты')
+        st.error('Дружок ты еще не изучил ракеты')
     else:
         st.write('Количество ваших ракет:',city['roket'])
-        country = st.multiselect('Какие страны атакуем?',['Мексика', 'Канада', 'Австралию', 'Швеция', 'Аргентина'])
+        country = st.multiselect('Какие страны атакуем?',['Мексика', 'Канада', 'Австралия', 'Швеция', 'Аргентина'])
         for l in range(0,len(country)):
             if country[l]=='Мексика':
                 attak=st.multiselect('Какие города атакуем в Максика?',['Мехико','Канкун','Мерида','Таско'])
             if country[l]=='Канада':
                 attak1=st.multiselect('Какие города атакуем в Канада?',['Оттава','Торонто','Ванкувер','Квебек'])
-            if country[l]=='Австралию':
+            if country[l]=='Австралия':
                 attak2=st.multiselect('Какие города атакуем в Австралия?',['Кенберра','Сидней','Мельбрун','Перт'])
             if country[l]=='Швеция':
                 attak3=st.multiselect('Какие города атакуем в Швеция?',['Стокгольм','Вестерсон','Висбю','Евле'])
@@ -109,9 +112,7 @@ if menu=='Запуск ракет':
                 attak4=st.multiselect('Какие города атакуем в Аргентина?',['Буэнос-Сальта','Сальта','Кордова','Мендоса'])
             final_roket=city['roket']-(len(attak)+len(attak1)+len(attak2)+len(attak3)+len(attak4))
             st.write('У вас останеться ракет:',final_roket)
-        for ii in range(0, 20):
-            if Attak.get(f'{ii}') == None:
-                break
+         
         if st.button('Отправить данные'):
             if final_roket>=0:
                 for ll in range(0,5):
@@ -119,6 +120,13 @@ if menu=='Запуск ракет':
                         count=5-len(country)
                         for lll in range(0,count):
                             country.append(' ')
+                for ii in range(0, 20):
+                  if Attak.get(f'{ii}') == None:
+                      break
+                for iii in range(0,30):
+                  if Attak.get(f'{iii}')== None:
+                      break
+                sms.put({'Country':f'{Country_Name}','sms':'Attak'})
                 Attak.put({'key':f'{ii}','Country':'Мексика'+str(attak),'Country1':'Канада'+str(attak1),'Country2':'Австралия'+str(attak2),'Country3':'Швеция'+str(attak3),'Country4':'Аргентина'+str(attak4)})
                 db_content = Attak.fetch().items
                 st.write(db_content)
@@ -126,7 +134,7 @@ if menu=='Запуск ракет':
                     time.sleep(1)
                 st.success('Данные обновлены!')
             elif final_roket==-1999:
-                st.error('Дружек не надо мне засарять базу данных...')
+                st.error('Дружок не надо мне засарять базу данных...')
             else:
                 st.error('Вы выпустили больше ракет чем у вас есть...')
 
@@ -174,28 +182,28 @@ if menu=='Улучшения':
     shit = st.checkbox(f'{city_1} ')
     if shit:
         if city['shit1']=='🛡️':
-            st.error('Дружек, у нас так не принято. По 1 щиту на город...')
+            st.error('Дружок, у нас так не принято. По 1 щиту на город...')
         else:
             masiv_shit[0]+='🛡️'
             money-=350
     shit1 = st.checkbox(f'{city_2} ')
     if shit1:
         if city['shit2']=='🛡️':
-            st.error('Дружек, у нас так не принято. По 1 щиту на город...')
+            st.error('Дружок, у нас так не принято. По 1 щиту на город...')
         else:
             masiv_shit[1]+='🛡️'
             money-=350
     shit2 = st.checkbox(f'{city_3} ')
     if shit2:
         if city['shit3'] == '🛡️':
-            st.error('Дружек, у нас так не принято. По 1 щиту на город...')
+            st.error('Дружок, у нас так не принято. По 1 щиту на город...')
         else:
             masiv_shit[2] += '🛡️'
             money -= 350
     shit3 = st.checkbox(f'{city_4} ')
     if shit3:
         if city['shit4']=='🛡️':
-            st.error('Дружэ, у нас так не принято. По 1 щиту на город...')
+            st.error('Дружок, у нас так не принято. По 1 щиту на город...')
         else:
             masiv_shit[3]+='🛡️'
             money-=350
@@ -235,15 +243,16 @@ if menu=='Улучшения':
     col3.metric('🏠'+city['shit3']+masiv_shit[2]+f'{city_3}','⚙️'+str(50+10*city['up3']+10*masiv_up[2])+'%'+' 🌳 '+str(eco3)+'%',masiv_up[2]*10)
     col4.metric('🏠'+city['shit4']+masiv_shit[3]+f'{city_4}','⚙️'+str(40+10*city['up4']+10*masiv_up[3])+'%'+' 🌳 '+str(eco4)+'%',masiv_up[3]*10)
 
-    for ii in range(0,20):
-        if db.get(f'{ii}')==None:
-            break
-
     mail=st.text_input('Тут вы можете отправить сообщение Представителю ООН')
     if st.button('Отправить данные'):
         if money>=0:
-            if mail!='':
-                sms.put({'Country': f'{Country_Name}', 'sms': mail})
+            for ii in range(0,20):
+                if db.get(f'{ii}')==None:
+                    break
+            for iii in range(0,30):
+                if sms.get(f'{ii}')==None:
+                    break
+            sms.put({'key':f'{iii}','Country': f'{Country_Name}', 'sms': mail})
             db.put({'key':f'{ii}',"money":money, "roket": number,"shit":str(masiv_shit),"up": str(masiv_up),'sunks_for_who':str(sunks_for_who),'reserch':reserch1})
             with st.spinner('Wait for it...'):
                 time.sleep(1)
