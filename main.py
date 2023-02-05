@@ -124,9 +124,9 @@ if menu=='Запуск ракет':
                   if Attak.get(f'{ii}') == None:
                       break
                 for iii in range(0,30):
-                  if Attak.get(f'{iii}')== None:
+                  if sms.get(f'{iii}')== None:
                       break
-                sms.put({'Country':f'{Country_Name}','sms':'Attak'})
+                sms.put({'key':f'{iii}','Country':f'{Country_Name}','sms':'Attak'})
                 Attak.put({'key':f'{ii}','Country':'Мексика'+str(attak),'Country1':'Канада'+str(attak1),'Country2':'Австралия'+str(attak2),'Country3':'Швеция'+str(attak3),'Country4':'Аргентина'+str(attak4)})
                 db_content = Attak.fetch().items
                 st.write(db_content)
