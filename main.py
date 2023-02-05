@@ -250,7 +250,7 @@ if menu=='Улучшения':
                 if db.get(f'{ii}')==None:
                     break
             for iii in range(0,30):
-                if sms.get(f'{ii}')==None:
+                if sms.get(f'{iii}')==None:
                     break
             sms.put({'key':f'{iii}','Country': f'{Country_Name}', 'sms': mail})
             db.put({'key':f'{ii}',"money":money, "roket": number,"shit":str(masiv_shit),"up": str(masiv_up),'sunks_for_who':str(sunks_for_who),'reserch':reserch1})
