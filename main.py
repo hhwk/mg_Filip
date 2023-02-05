@@ -241,7 +241,7 @@ if menu=='Улучшения':
     col1.metric('🏠'+city['shit1']+masiv_shit[0]+f'{city_1}','⚙️'+str(60+10*city['up1']+10*masiv_up[0])+'%'+' 🌳 '+str(eco1)+'%',masiv_up[0]*10)
     col2.metric('🏠'+city['shit2']+masiv_shit[1]+f'{city_2}','⚙️'+str(50+10*city['up2']+10*masiv_up[1])+'%'+' 🌳 '+str(eco2)+'%',masiv_up[1]*10)
     col3.metric('🏠'+city['shit3']+masiv_shit[2]+f'{city_3}','⚙️'+str(50+10*city['up3']+10*masiv_up[2])+'%'+' 🌳 '+str(eco3)+'%',masiv_up[2]*10)
-    col4.metric('🏠'+city['shit4']+masiv_shit[3]+f'{city_4}','⚙️'+str(40+10*city['up4']+10*masiv_up[3])+'%'+' 🌳 '+str(eco4)+'%',masiv_up[3]*10)
+    col4.metric('🏚️'+city['shit4']+masiv_shit[3]+f'{city_4}','⚙️'+str(0)+'%'+' 🌳 '+str(0)+'%',masiv_up[3]*10)
 
     mail=st.text_input('Тут вы можете отправить сообщение Представителю ООН')
     if st.button('Отправить данные'):
